@@ -8,7 +8,6 @@ import { json } from "@codemirror/lang-json";
 import { githubLight } from "@uiw/codemirror-theme-github";
 import ReactCodeMirror from "@uiw/react-codemirror";
 import { useAtom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
 import {
   CircleAlertIcon,
   CircleCheckIcon,
@@ -21,19 +20,7 @@ import { useMemo, useState } from "react";
 import Ajv from "ajv";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-
-type AppState = {
-  schema: string;
-  tests: string[];
-};
-
-const appStateAtom = atomWithStorage<AppState>(
-  "json-schema-validator-app-state",
-  {
-    schema: "",
-    tests: [""],
-  }
-);
+import { appStateAtom } from "@/lib/atoms";
 
 function App() {
   const [state, setState] = useAtom(appStateAtom);
